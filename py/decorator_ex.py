@@ -1,11 +1,11 @@
-def funcDecorator(f):
+def decoratorFunc(f):
 
     print "entryExit decorator"
     f(2)
 
     return
 
-@funcDecorator
+@decoratorFunc
 def func1(val):
 
     print "Inside func1"
