@@ -1,18 +1,12 @@
-'''
-def decoratorFunc(f):
+def entryExitFunc(f):
 
-    print "inside decorator function"
-    f(42)
+    def newFunc():
+        print "inside decorator function"
+        print "entering", f.__name__
+        f()
+        print "exited", f.__name__
 
-    return
-
-@decoratorFunc
-def func1(val):
-
-    print "inside function 1"
-
-    return
-'''
+    return newFunc
 
 class entryExit(object):
 
@@ -36,9 +30,15 @@ def func1():
 def func2():
     print "inside function 2"
 
+@entryExitFunc
+def func3():
+    print "inside function 3"
+
 
 if __name__ == "__main__":
 
-    pass
     func1()
+    print '\n'
     func2()
+    print '\n'
+    func3()
