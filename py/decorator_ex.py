@@ -19,6 +19,10 @@ class entryExit(object):
     def __init__(self, f):
         self.f = f
 
+    '''
+    The major constraint on the result of a decorator is that it be callable.
+    The __call__ method here achieves that.
+    '''
     def __call__(self):
         print "entering", self.f.__name__
         self.f()
