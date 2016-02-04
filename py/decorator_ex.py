@@ -1,17 +1,40 @@
+'''
 def decoratorFunc(f):
 
-    print "entryExit decorator"
-    f(2)
+    print "inside decorator function"
+    f(42)
 
     return
 
 @decoratorFunc
 def func1(val):
 
-    print "Inside func1"
-    print val
+    print "inside function 1"
 
-    return None
+    return
+'''
+
+class entryExit(object):
+
+    def __init__(self, f):
+        self.f = f
+
+    def __call__(self):
+        print "entering", self.f.__name__
+        self.f()
+        print "exited", self.f.__name__
+
+@entryExit
+def func1():
+    print "inside function 1"
+
+@entryExit
+def func2():
+    print "inside function 2"
+
 
 if __name__ == "__main__":
-    func1
+
+    pass
+    func1()
+    func2()
