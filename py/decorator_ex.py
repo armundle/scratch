@@ -11,11 +11,18 @@ def entryExitFunc(f):
 class entryExit(object):
 
     def __init__(self, f):
+    '''
+    If there are no decorator arguments, the function to be decorated is passed
+    to the constructor.
+    '''
         self.f = f
 
     '''
     The major constraint on the result of a decorator is that it be callable.
     The __call__ method here achieves that.
+    '''
+    '''
+    The __call__ method is not called until the decorated function is called.
     '''
     def __call__(self):
         print "entering", self.f.__name__
