@@ -1,4 +1,4 @@
-def entryExitFunc(f):
+def decoratorFunction(f):
 
     def newFunc():
         print "inside decorator function"
@@ -8,7 +8,7 @@ def entryExitFunc(f):
 
     return newFunc
 
-class entryExit(object):
+class decoratorWithoutArguments(object):
 
     '''
     If there are no decorator arguments, the function to be decorated is passed
@@ -16,32 +16,37 @@ class entryExit(object):
     '''
     def __init__(self, f):
         self.f = f
-        print "entryExit.__init__"
+        print "decoratorWithoutArguments.__init__"
 
     '''
-    Note: The major constraint on the result of a decorator is that it be callable.
+    Note:
+    1. The major constraint on the result of a decorator is that it be callable.
     The __call__ method here achieves that.
+    2. __call__ is called every time the decorated function is called;
+    __init__is called only once during the 'construction' of the decorated
+    function.
+
     '''
     '''
     The __call__ method is not called until the decorated function is called.
     '''
     def __call__(self, *args):
-        print "entryExit.__call__"
+        print "decoratorWithoutArguments.__call__"
         print "entering", self.f.__name__
         self.f(*args)
         print "exited", self.f.__name__
 
-@entryExit
+@decoratorWithoutArguments
 def func1(a1, a2, a3):
     print "inside function 1"
     print "spell args: ", a1, a2, a3
 
-@entryExit
+@decoratorWithoutArguments
 def func2():
     print "inside function 2"
     print "no args"
 
-@entryExitFunc
+@decoratorFunction
 def func3():
     print "inside function 3"
 
