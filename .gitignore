@@ -1,2 +1,3 @@
 *.swp
 *.un~
+/webDevWithNodeAndExpress/meadowlark/node_modules
